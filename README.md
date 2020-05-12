@@ -1,6 +1,6 @@
 http://kochinch.freevar.com/index.html
 
-![image](Screenshot.png)<br />
+![image](screenshot.png)<br />
 
 # Google-News
 Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS
