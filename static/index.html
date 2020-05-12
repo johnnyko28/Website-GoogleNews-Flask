@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Google News</title>
+        <meta name="homework6" content="JSON Exercise">
+        <style>
+            body{
+                text-align: center;
+            }
+            .btn-group button {
+                font-size: 20px;
+                font-family: "Times New Roman";
+                background-color: #e7e7e7;
+                color: black;
+                border-radius: 4px;
+                padding: 10px 24px;
+                width: 180px;
+                display: block;
+            }
+            button:hover  {
+                background-color: #4CAF50 !important; /* Green */
+                color: white !important;
+            }
+
+            button {
+                font-size: 16px;
+                font-family: "Arial";
+                background-color: #e7e7e7;
+                color: black;
+                padding: 8px 20px;
+                width: 150px;
+                display: block;
+                border: 0px;
+                text-align: center;
+                margin: auto;
+            }
+            .bottom {
+                position: absolute;
+                  bottom: 0px;
+                  right: 20px;
+                  background-color: black;
+                  color: white;
+                  padding-left: 20px;
+                  padding-right: 20px;
+                  font-size: 24px;
+                }
+
+            .column {
+              float: left;
+              padding: 10px;
+            }
+
+            /* Left and right column */
+            .column.side {
+              width: 20%;
+            }
+
+            /* Middle column */
+            .column.middle {
+              width: 800px;
+                padding-left: 30px;
+            }
+
+            /* Clear floats after the columns */
+
+
+            .headline {
+                text-align: center;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            hr.new3 {
+              border-top: 1px dotted black;
+                width: 100%;
+                padding-top:1px;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: 5%;
+            }
+
+
+            .card {
+              /* Add shadows to create the "card" effect */
+               border-radius: 4px;
+
+                border: 1px solid DarkGray;
+
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+                width: 190px;
+                background-color: #e7e7e7;
+                 margin: 5px;
+            }
+
+            .card-column {
+              /* Add shadows to create the "card" effect */
+               border-radius: 4px;
+
+                border: 1px solid DarkGray;
+
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+                width: 100%;
+                background-color: #e7e7e7;
+                 margin: 5px;
+            }
+            .card-column:hover {
+              box-shadow: 0 20px 20px 0 rgba(0,0,0,0.5);
+            }
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+              box-shadow: 0 20px 20px 0 rgba(0,0,0,0.5);
+            }
+
+            /* Add some padding inside the card container */
+            .container {
+              padding: 2px 16px;
+            }
+
+            .container-search {
+              padding: 2px 16px;
+                text-align: left;
+                line-height: 1.2;
+            }
+            img {
+                 border-radius: 4px;
+                object-fit: cover;
+            }
+
+            .flex-container {
+              display: flex;
+            }
+
+            .flex-container-container {
+              display: flex;
+                flex-direction: column;
+            }
+
+            input {
+                font-size: 16px;
+            }
+            input[type=date] {
+                font-size: 16px;
+                width: 160px;
+                padding: 3px;
+            }
+            input[type=text], select {
+              width: 150px !important;
+              padding: 5px 10px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+                font-size: 16px;
+            }
+
+            input[type=submit], input[type=reset]{
+              border: none;
+                font-size: 16px;
+              color: black;
+              padding: 5px 10px;
+              text-decoration: none;
+              margin: 4px 2px;
+              cursor: pointer;
+                background-color: #f2f2f2;
+            }
+             input[type=submit]:hover, input[type=reset]:hover{
+              background-color: #4CAF50 !important;
+                 color: white !important;
+            }
+            input[type=text]:required {
+              border-color: red !important;
+
+            }
+            .form {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+                margin-left: 0px;
+                font-size: 18px;
+                width: 800px;
+                text-align: center;
+            }
+            label {
+                padding: 20px;
+            }
+
+            .required::after {
+                content: " *"; color:red;
+            }
+
+            select {
+                text-align-last: center;
+            }
+            .slideshow-container {
+              max-width: 900px;
+              position: relative;
+              margin: auto;
+            }
+
+            .title-container{
+                position: absolute;
+                background-color:#000;
+                  padding: 8px 12px;
+
+                  bottom: 0px;
+                  width: 460px;
+                  text-align: center;
+                  opacity: 65%;
+
+            }
+            .title{
+                font-size: 20px;
+                font-weight: bold;
+                color:white;
+                opacity: 100% !important;
+            }
+
+            .description {
+                font-size: 16px;
+                font-weight: normal;
+                color:white;
+                opacity: 100% !important;
+            }
+            .small{
+                height: 100px;
+                width: 100px;
+                object-fit: cover;
+                padding: 20px;
+            }
+            .truncate {
+                white-space: nowrap;
+                overflow: hidden;
+                width: 600px;
+                text-overflow: ellipsis;
+            }
+            h4, h7 {
+                display: inline;
+            }
+
+            h3 {
+                margin: 10px;
+                margin-left: 0px;
+            }
+            .close {
+                position: relative;
+                top: 0px;
+                right: 0px;
+            }
+            #my_dataviz {
+                background-color: #e7e7e7;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <div class="column side">
+                <div class="sidebar">
+                    <div class="btn-group">
+                        <button id="1" style="background-color: #484848; color: white" onclick="googleNews()">Google News</button>
+                        <button id="2" onclick="search()">Search</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="column middle" id="GoogleNews">
+                <div class="flex-container">
+                    <div class="slideshow-container">
+                        <div class="mySlides">
+                            <div id="top_image_1">
+                            </div>
+                            <div class="title-container">
+                                <div id="title_1" class="title">
+                                </div>
+                                <div id ="description_1" class="description">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mySlides">
+                            <div id="top_image_2">
+                            </div>
+                            <div class="title-container">
+                                <div id="title_2" class="title">
+                                </div>
+                                <div id ="description_2" class="description">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mySlides">
+                            <div id="top_image_3">
+                            </div>
+                            <div class="title-container">
+                                <div id="title_3" class="title">
+                                </div>
+                                <div id ="description_3" class="description">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mySlides">
+                            <div id="top_image_4">
+                            </div>
+                            <div class="title-container">
+                                <div id="title_4" class="title">
+                                </div>
+                                <div id ="description_4" class="description">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mySlides">
+                            <div id="top_image_5">
+                            </div>
+                            <div class="title-container">
+                                <div id="title_5" class="title">
+                                </div>
+                                <div id ="description_5" class="description">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- from https://www.d3-graph-gallery.com/graph/wordcloud_size.html-->
+                    <!-- Load d3.js -->
+                    <script src="https://d3js.org/d3.v4.js"></script>
+
+                    <!-- Load d3-cloud -->
+                    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+                    <!-- Create a div where the graph will take place -->
+
+                    <div id="my_dataviz"></div>
+                </div>
+                <br>
+                <br>
+                    <div>
+                        <h1 class="headline">CNN</h1>
+                        <br>
+                        <hr class="new3">
+                        <div class="flex-container">
+                            <div class="card">
+                                <div id="cnn_image_1"></div>
+                              <div class="container">
+                                <h3 id="cnn-title-1"><b></b></h3>
+                                <p id="cnn-description-1"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                                <div id="cnn_image_2"></div>
+                              <div class="container">
+                                <h3 id="cnn-title-2"><b></b></h3>
+                                <p id="cnn-description-2"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                                <div id="cnn_image_3"></div>
+                              <div class="container">
+                                <h3 id="cnn-title-3"><b></b></h3>
+                                <p id="cnn-description-3"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                                <div id="cnn_image_4"></div>
+                              <div class="container">
+                                <h3 id="cnn-title-4"><b></b></h3>
+                                <p id="cnn-description-4"></p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                <br>
+                <br>
+                    <div>
+                        <h1 class="headline">FOX News</h1>
+                        <br>
+                        <hr class="new3">
+                        <div class="flex-container">
+                            <div class="card">
+                              <div id="foxnews_image_1"></div>
+                              <div class="container">
+                                <h3 id="foxnews-title-1"><b></b></h3>
+                                <p id="foxnews-description-1"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div id="foxnews_image_2"></div>
+                              <div class="container">
+                                <h3 id="foxnews-title-2"><b></b></h3>
+                                <p id="foxnews-description-2"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div id="foxnews_image_3"></div>
+                              <div class="container">
+                                <h3 id="foxnews-title-3"><b></b></h3>
+                                <p id="foxnews-description-3"></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div id="foxnews_image_4"></div>
+                              <div class="container">
+                                <h3 id="foxnews-title-4"><b></b></h3>
+                                <p id="foxnews-description-4"></p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="column middle" id="Search" style="display: none">
+
+
+                <div class="form">
+                  <form action="/action_page.php">
+                    <label for="keyword" class="required">keyword</label>
+                    <input type="text" id="keyword" name="keyword" required>
+                    <label for="From" class="required">From</label>
+                    <input type="date" id="from" name="from" required>
+                    <label for="To" class="required">To</label>
+                    <input type="date" id="to" name="keyword" required>
+                    <br>
+                  <br>
+                    <label for="category">Category</label>
+                    <select id="category" name="country">
+                      <option>all</option>
+                     <option>business</option>
+                      <option>entertainment</option>
+                      <option>general</option>
+                        <option>health</option>
+                        <option>science</option>
+                        <option>sports</option>
+                        <option>technology</option>
+                    </select>
+                      <label for="source">Source</label>
+                    <select id="source" name="source">
+                      <option>all</option>
+                      <option>Bloomberg</option>
+                      <option>Business Insider</option>
+                        <option>CNBC</option>
+                        <option>Fortune</option>
+                        <option>The Wall Street Journal</option>
+                    </select>
+                     <br>
+                      <br>
+                    <input class="searchBtn" type="submit" value="Search">
+                      &nbsp;&nbsp;
+                    <input class="searchBtn" type="reset" value="Clear">
+                  </form>
+                </div>
+
+                <br>
+                <br>
+                        <!-- <div class="flex-container-column">
+                            <div class="card-column" onclick="">
+                                <div class="flex-container">
+                                    <img class="small" src="https://cdn.cnn.com/cnnnext/dam/assets/200304041310-05-coronavirus-0303-seattle-super-tease.jpg" alt="Avatar">
+                                    <div class="container-search">
+                                        <h3><b>New CDC guidance says older adults should 'stay at home as much as possible' due to coronavirus</b></h3>
+                                        <div >
+                                            <p class="truncate">
+                                                Amid a coronavirus outbreak in the United States, the US Centers for Disease Control and Prevention is encouraging older people and people with severe chronic medical conditions to \"stay at home as much as possible.
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex-container-column">
+                            <div class="card-column" onclick="">
+                                <div class="flex-container">
+                                    <img class="small" src="https://cdn.cnn.com/cnnnext/dam/assets/200304041310-05-coronavirus-0303-seattle-super-tease.jpg" alt="Avatar">
+                                    <div class="container-search">
+                                        <h3><b>New CDC guidance says older adults should 'stay at home as much as possible' due to coronavirus</b></h3>
+                                        <h4>Author:</h4> <h7>Elizabeth Cohen, Senior Medical Correspondent</h7>
+                                        <br>
+                                        <h4>Source:</h4> <h7>CNN</h7>
+                                        <br>
+                                        <h4>Date:</h4> <h7>2020-03-06</h7>
+                                        <div>Amid a coronavirus outbreak in the United States, the US Centers for Disease Control and Prevention is encouraging older people and people with severe chronic medical conditions to stay at home as much as possible.</div>
+                                        <a href="http://www.google.com" target="_blank">See Original Post</a>
+                                        <a href="#" class="close"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex-container-column">
+                            <div class="card-column" onclick="window.location='http://us.cnn.com/2020/03/06/health/california-coronavirus-friday/index.html'">
+                                <div class="flex-container">
+                                    <img class="small" src="https://cdn.cnn.com/cnnnext/dam/assets/200304041310-05-coronavirus-0303-seattle-super-tease.jpg" alt="Avatar">
+                                    <div class="container">
+                                        <h3><b>New CDC guidance says older adults should 'stay at home as much as possible' due to coronavirus</b></h3>
+                                        <p>Amid a coronavirus outbreak in the United States, the US Centers for Disease Control and Prevention is encouraging older people and people with severe chronic medical conditions to \"stay at home as much as possible.\</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex-container-column">
+                            <div class="card-column" onclick="window.location='http://us.cnn.com/2020/03/06/health/california-coronavirus-friday/index.html'">
+                                <div class="flex-container">
+                                    <img class="small" src="https://cdn.cnn.com/cnnnext/dam/assets/200304041310-05-coronavirus-0303-seattle-super-tease.jpg" alt="Avatar">
+                                    <div class="container">
+                                        <h3><b>New CDC guidance says older adults should 'stay at home as much as possible' due to coronavirus</b></h3>
+                                        <p>Amid a coronavirus outbreak in the United States, the US Centers for Disease Control and Prevention is encouraging older people and people with severe chronic medical conditions to \"stay at home as much as possible.\</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="flex-container-column">
+                            <div class="card-column" onclick="window.location='http://us.cnn.com/2020/03/06/health/california-coronavirus-friday/index.html'">
+                                <div class="flex-container">
+                                    <img class="small" src="https://cdn.cnn.com/cnnnext/dam/assets/200304041310-05-coronavirus-0303-seattle-super-tease.jpg" alt="Avatar">
+                                    <div class="container">
+                                        <h3><b>New CDC guidance says older adults should 'stay at home as much as possible' due to coronavirus</b></h3>
+                                        <p>Amid a coronavirus outbreak in the United States, the US Centers for Disease Control and Prevention is encouraging older people and people with severe chronic medical conditions to \"stay at home as much as possible.\</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button>Show More</button>
+                        <br>
+                        <button>Show Less</button>
+                        <p id="demo"></p> -->
+        </div>
+
+        <SCRIPT type="text/javascript">
+            //Top Headlines Slides, by https://www.w3schools.com/w3css/w3css_slideshow.asp
+            var myIndex = 0;
+            carousel();
+
+            function carousel() {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+              }
+              myIndex++;
+              if (myIndex > x.length) {myIndex = 1}
+              x[myIndex-1].style.display = "block";
+              setTimeout(carousel, 3000); // Change image every 2 seconds
+            }
+            //from https://www.d3-graph-gallery.com/graph/wordcloud_size.html
+            // List of words
+            var myWords = [{word: "South Korea", size: "10"}, {word: "Cruise", size: "20"}, {word: "Coronavirus", size: "50"}, {word: "N.Y", size: "30"}, {word: "Iran", size: "20"}, {word: "Italy", size: "60"}, {word: "Trump", size: "60"},{word: "Germany", size: "10"}, {word: "France", size: "20"}, {word: "Spain", size: "50"}, {word: "Qurantine", size: "30"}, {word: "traval", size: "20"}, {word: "flight", size: "60"}, {word: "Nasdaq", size: "60"},{word: "Dow-Jones", size: "10"}, {word: "stock", size: "20"}, {word: "California", size: "50"}, {word: "locked", size: "30"}, {word: "halted", size: "20"}, {word: "SanFrancisco", size: "60"}, {word: "Democratics", size: "60"}, {word: "Publicans", size: "10"}, {word: "Cruise", size: "20"}, {word: "Coronavirus", size: "50"}, {word: "N.Y", size: "30"}, {word: "Iran", size: "20"}, {word: "COVID-19", size: "60"}, {word: "China", size: "60"}, {word: "Wuhan", size: "60"}, {word: "Xi", size: "60"} ]
+
+            // set the dimensions and margins of the graph
+            var margin = {top: 10, right: 10, bottom: 10, left: 10},
+                width = 350 - margin.left - margin.right,
+                height = 300 - margin.top - margin.bottom;
+
+            // append the svg object to the body of the page
+            var svg = d3.select("#my_dataviz").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+            // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+            // Wordcloud features that are different from one word to the other must be here
+            var layout = d3.layout.cloud()
+              .size([width, height])
+              .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
+              .padding(5)        //space between words
+              .rotate(function() { return ~~(Math.random() * 2) * 90; })
+              .fontSize(function(d) { return d.size; })      // font size of words
+              .on("end", draw);
+            layout.start();
+
+            // This function takes the output of 'layout' above and draw the words
+            // Wordcloud features that are THE SAME from one word to the other can be here
+            function draw(words) {
+              svg
+                .append("g")
+                  .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                  .selectAll("text")
+                    .data(words)
+                  .enter().append("text")
+                    .style("font-size", function(d) { return d.size; })
+                    .style("fill", "black")
+                    .attr("text-anchor", "middle")
+                    .style("font-family", "Impact")
+                    .attr("transform", function(d) {
+                      return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .text(function(d) { return d.text; });
+            }
+
+            xmlhttp=new XMLHttpRequest();
+            //xmlhttp.open("GET","http://csci571-python-kochinch.us-east-1.elasticbeanstalk.com/top_headlines",false);
+            //xmlhttp.open("GET","http://127.0.0.1:5000/top_headlines",false);
+            xmlhttp.open("GET","http://newsapi.org/v2/everything?q=bitcoin&apiKey=ac90537702d7468da86ffe236b33c0f6",false);
+
+            xmlhttp.send();
+            jsonObj= JSON.parse(xmlhttp.responseText);
+
+            document.getElementById("top_image_1").innerHTML = "<a href=\"" + jsonObj.articles[0].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[0].urlToImage + "\" width=\"485px\" height=\"300px\"></a>";
+            document.getElementById("title_1").innerHTML = jsonObj.articles[0].title;
+            document.getElementById("description_1").innerHTML = jsonObj.articles[0].description;
+
+            document.getElementById("top_image_2").innerHTML = "<a href=\"" + jsonObj.articles[1].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[1].urlToImage + "\" width=\"485px\" height=\"300px\"></a>";
+            document.getElementById("title_2").innerHTML = jsonObj.articles[1].title;
+            document.getElementById("description_2").innerHTML = jsonObj.articles[1].description;
+
+            document.getElementById("top_image_3").innerHTML = "<a href=\"" + jsonObj.articles[2].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[2].urlToImage + "\" width=\"485px\" height=\"300px\"></a>";
+            document.getElementById("title_3").innerHTML = jsonObj.articles[2].title;
+            document.getElementById("description_3").innerHTML = jsonObj.articles[2].description;
+
+            document.getElementById("top_image_4").innerHTML = "<a href=\"" + jsonObj.articles[3].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[3].urlToImage + "\" width=\"485px\" height=\"300px\"></a>";
+            document.getElementById("title_4").innerHTML = jsonObj.articles[3].title;
+            document.getElementById("description_4").innerHTML = jsonObj.articles[3].description;
+
+            document.getElementById("top_image_5").innerHTML = "<a href=\"" + jsonObj.articles[4].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[4].urlToImage + "\" width=\"485px\" height=\"300px\"></a>";
+            document.getElementById("title_5").innerHTML = jsonObj.articles[4].title;
+            document.getElementById("description_5").innerHTML = jsonObj.articles[4].description;
+
+
+            xmlhttp=new XMLHttpRequest();
+            xmlhttp.open("GET","http://newsapi.org/v2/everything?sources=CNN&apiKey=ac90537702d7468da86ffe236b33c0f6",false);
+            //xmlhttp.open("GET","http://csci571-python-kochinch.us-east-1.elasticbeanstalk.com/cnn",false);
+            //xmlhttp.open("GET","http://127.0.0.1:5000/cnn",false);
+            xmlhttp.send();
+            jsonObj= JSON.parse(xmlhttp.responseText);
+            document.getElementById("cnn_image_1").innerHTML = "<a href=\"" + jsonObj.articles[0].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[0].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("cnn-title-1").innerHTML = jsonObj.articles[0].title;
+            document.getElementById("cnn-description-1").innerHTML = jsonObj.articles[0].description;
+
+            document.getElementById("cnn_image_2").innerHTML = "<a href=\"" + jsonObj.articles[1].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[1].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("cnn-title-2").innerHTML = jsonObj.articles[1].title;
+            document.getElementById("cnn-description-2").innerHTML = jsonObj.articles[1].description;
+
+            document.getElementById("cnn_image_3").innerHTML = "<a href=\"" + jsonObj.articles[2].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[2].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("cnn-title-3").innerHTML = jsonObj.articles[2].title;
+            document.getElementById("cnn-description-3").innerHTML = jsonObj.articles[2].description;
+
+            document.getElementById("cnn_image_4").innerHTML = "<a href=\"" + jsonObj.articles[3].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[3].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("cnn-title-4").innerHTML = jsonObj.articles[3].title;
+            document.getElementById("cnn-description-4").innerHTML = jsonObj.articles[3].description;
+
+
+            xmlhttp=new XMLHttpRequest();
+            //xmlhttp.open("GET","http://csci571-python-kochinch.us-east-1.elasticbeanstalk.com/foxnews",false);
+            xmlhttp.open("GET","http://newsapi.org/v2/everything?sources=fox-news&apiKey=ac90537702d7468da86ffe236b33c0f6",false);
+            //xmlhttp.open("GET","http://127.0.0.1:5000/foxnews",false);
+            xmlhttp.send();
+            jsonObj= JSON.parse(xmlhttp.responseText);
+            document.getElementById("foxnews_image_1").innerHTML = "<a href=\"" + jsonObj.articles[0].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[0].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("foxnews-title-1").innerHTML = jsonObj.articles[0].title;
+            document.getElementById("foxnews-description-1").innerHTML = jsonObj.articles[0].description;
+
+            document.getElementById("foxnews_image_2").innerHTML = "<a href=\"" + jsonObj.articles[1].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[1].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("foxnews-title-2").innerHTML = jsonObj.articles[1].title;
+            document.getElementById("foxnews-description-2").innerHTML = jsonObj.articles[1].description;
+
+            document.getElementById("foxnews_image_3").innerHTML = "<a href=\"" + jsonObj.articles[2].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[2].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("foxnews-title-3").innerHTML = jsonObj.articles[2].title;
+            document.getElementById("foxnews-description-3").innerHTML = jsonObj.articles[2].description;
+
+            document.getElementById("foxnews_image_4").innerHTML = "<a href=\"" + jsonObj.articles[3].url +"\" target=\"_blank\"><img src=\"" + jsonObj.articles[3].urlToImage + "\" width=\"100%\" height=\"150px\"></a>";
+            document.getElementById("foxnews-title-4").innerHTML = jsonObj.articles[3].title;
+            document.getElementById("foxnews-description-4").innerHTML = jsonObj.articles[3].description;
+
+
+            function search(){
+                document.getElementById("GoogleNews").style.display = "none";
+                document.getElementById("Search").style.display = "block";
+
+                document.getElementById("2").style.backgroundColor = "#484848";
+                document.getElementById("2").style.color = "white";
+                document.getElementById("1").style.backgroundColor = "#e7e7e7";
+                document.getElementById("1").style.color = "black";
+                var d1 = new Date();
+                d1.setDate(d1.getDate() - 7);
+                document.getElementById("from").valueAsDate = d1;
+                var d2 = new Date();
+                document.getElementById("to").valueAsDate = d2;
+                if (d1 - d2 > 0) {
+                    alert("Incorrect time")
+                }
+
+            }
+
+            function googleNews(){
+                document.getElementById("Search").style.display = "none";
+                document.getElementById("GoogleNews").style.display = "block";
+
+                document.getElementById("1").style.backgroundColor = "#484848";
+                document.getElementById("1").style.color = "white";
+                document.getElementById("2").style.backgroundColor = "#e7e7e7";
+                document.getElementById("2").style.color = "black";
+            }
+
+        </SCRIPT>
+    </body>
+</html>
