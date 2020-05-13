@@ -1,9 +1,12 @@
-http://kochinch.freevar.com/index.html
 
-![image](screenshot.png)<br />
+<img src="screenshot.png" width="80%">
 
 # Google-News
 Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS
+</br></br>
+http://kochinch.freevar.com/index.html
+</br>
+</br>
 
 This is a webpage that allows you to search for news information using the Google News API and the results will be displayed in card format.
 
