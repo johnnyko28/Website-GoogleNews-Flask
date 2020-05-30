@@ -3,7 +3,6 @@
 # Google-News
 Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS
 </br></br>
-http://kochinch.freevar.com/index.html
 </br>
 </br>
 
