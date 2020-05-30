@@ -12,4 +12,4 @@ This is a webpage that allows you to search for news information using the Googl
 - Used Google News API.
 - Used a JSON parser in Python.
 - Used Flask in Python.
-- Deloyed to AWS, now https://freewha.com
+- Deloyed to AWS
