@@ -1,10 +1,11 @@
 
 # Google-News
+Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS <br>
 Demo link: https://google-news-johnnyko.herokuapp.com/
 
 </br>
 <img src="screenshot.png" width="80%">
-Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS <br>
+
 
 This is a webpage that allows you to search for news information using the Google News API and the results will be displayed in card format.
 
