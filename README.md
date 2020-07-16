@@ -1,6 +1,6 @@
 
 # Google-News
-Demo link: https://google-news-johnnyko.herokuapp.com/
+Demo link: https://google-news-johnnyko.herokuapp.com/  <br>
 Web development project: using Python/Flask/JSON/HTML/CSS/JavaScript/AWS <br>
 
 </br>
